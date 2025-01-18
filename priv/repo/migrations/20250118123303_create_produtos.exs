@@ -8,7 +8,7 @@ defmodule Tela.Repo.Migrations.CreateProdutos do
       add :data_cadastro, :date
       add :preco, :decimal
 
-      timestamps(type: :utc_datetime)
+      timestamps()
     end
   end
 end
