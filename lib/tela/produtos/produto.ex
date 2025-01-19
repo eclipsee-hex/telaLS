@@ -40,7 +40,7 @@ end
     if is_nil(preco) or Decimal.cmp(preco, Decimal.new(0)) == :gt do
       changeset
     else
-      add_error(changeset, :preco, "must be greater than 0")
+      add_error(changeset, :preco, "Deve ser maior que 0")
     end
   end
  

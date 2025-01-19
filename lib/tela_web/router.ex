@@ -5,9 +5,12 @@ defmodule TelaWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", TelaWeb do
+  scope "/api", TelaWeb.Api do
     pipe_through :api
+  
+    resources "/produtos", ProdutoController
   end
+  
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:tela, :dev_routes) do

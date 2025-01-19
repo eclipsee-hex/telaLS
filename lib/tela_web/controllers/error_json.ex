@@ -1,20 +1,25 @@
 defmodule TelaWeb.ErrorJSON do
-  @moduledoc """
-  This module is invoked by your endpoint in case of errors on JSON requests.
+  import Ecto.Changeset
+  
+  def translate_changeset_errors(changeset) do
+    changeset
+    |> Ecto.Changeset.traverse_errors(&translate_error/1)  # Traduz cada erro
+    |> Enum.into(%{})  # Transforma a lista de erros em um mapa
+  end
 
-  See config/config.exs.
-  """
+  # Função para traduzir cada erro individual
+  defp translate_error({msg, opts}) do
+    # customizar como deseja tratar cada tipo de erro
+    # Exemplo: usando os campos de opções para customizar a tradução do erro
+    case msg do
+      "can't be blank" -> "não pode ser vazio"
+      "is invalid" -> "é inválido"
+      "is too short" -> "é muito curto"
+      "is too long" -> "é muito longo"
+      _ -> msg
+    end
+  end
 
-  # If you want to customize a particular status code,
-  # you may add your own clauses, such as:
-  #
-  # def render("500.json", _assigns) do
-  #   %{errors: %{detail: "Internal Server Error"}}
-  # end
-
-  # By default, Phoenix returns the status message from
-  # the template name. For example, "404.json" becomes
-  # "Not Found".
   def render(template, _assigns) do
     %{errors: %{detail: Phoenix.Controller.status_message_from_template(template)}}
   end
