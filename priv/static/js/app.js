@@ -15,8 +15,8 @@ document.getElementById("saveButton").addEventListener("click", function(event) 
   const productData = {
     descricao: descricao,
     preco: preco,
-    validade: validade,
-    cadastro: cadastro
+    data_validade: validade,
+    data_cadastro: cadastro
   };
 
  
