@@ -10,6 +10,10 @@ defmodule TelaWeb.Router do
   
     resources "/produtos", ProdutoController
   end
+
+  scope "/", TelaWeb do
+    get "/", PageController, :index
+  end
   
 
   # Enable LiveDashboard and Swoosh mailbox preview in development

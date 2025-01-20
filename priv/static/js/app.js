@@ -1,71 +1,54 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("produtoForm");
-    const salvarBtn = document.getElementById("salvarBtn");
-    const limparBtn = document.getElementById("limparBtn");
-  
-    const formatarPreco = (valor) => {
-      return new Intl.NumberFormat("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      }).format(valor);
-    };
-  
-    const limparCampos = () => {
-      form.reset();
-    };
-  
-    const converterParaDecimal = (valor) => {
-      return parseFloat(valor.replace(".", "").replace(",", "."));
-    };
-  
-    const validarData = (data) => {
-      const regex = /^(\d{2})\/(\d{2})\/(\d{4})$/;
-      return regex.test(data);
-    };
-  
-    salvarBtn.addEventListener("click", async (event) => {
-      event.preventDefault();
-  
-      const descricao = form.descricao.value.trim();
-      const preco = form.preco.value.trim();
-      const validade = form.validade.value.trim();
-      const cadastro = form.cadastro.value.trim();
-  
-      if (!descricao || !preco || !validade || !cadastro) {
-        alert("Por favor, preencha todos os campos.");
-        return;
-      }
-  
-      if (!validarData(validade) || !validarData(cadastro)) {
-        alert("As datas devem estar no formato dd/mm/yyyy.");
-        return;
-      }
-  
-      try {
-        const produto = {
-          descricao,
-          preco: converterParaDecimal(preco),
-          data_validade: validade,
-          data_cadastro: cadastro,
-        };
-  
-        const response = await axios.post("/api/produtos", produto);
-  
-        if (response.status === 201) {
-          alert("Produto cadastrado com sucesso!");
-          limparCampos();
-        } else {
-          alert("Erro ao cadastrar o produto. Tente novamente.");
-        }
-      } catch (error) {
-        console.error("Erro ao cadastrar produto:", error);
-        alert("Erro ao cadastrar o produto. Verifique os dados e tente novamente.");
-      }
-    });
-  
-    limparBtn.addEventListener("click", (event) => {
-      event.preventDefault();
-      limparCampos();
-    });
+document.getElementById("saveButton").addEventListener("click", function(event) {
+
+  event.preventDefault();
+
+
+  const descricao = document.getElementById("descricao").value;
+  let preco = document.getElementById("preco").value;
+  const validade = document.getElementById("validade").value;
+  const cadastro = document.getElementById("cadastro").value;
+
+ 
+  preco = formatPrecoToBR(preco);
+
+
+  const productData = {
+    descricao: descricao,
+    preco: preco,
+    validade: validade,
+    cadastro: cadastro
+  };
+
+ 
+  fetch("/api/produtos", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(productData)  
+  })
+  .then(response => response.json())  
+  .then(data => {
+    console.log("Produto salvo:", data);
+    alert("Produto salvo com sucesso!");
+  })
+  .catch(error => {
+    console.error("Erro ao salvar produto:", error);
+    alert("Erro ao salvar produto.");
   });
+});
+
+// 
+function formatPrecoToBR(value) {
+  // 
+  value = value.replace(/[^\d,]/g, "");
+
   
+  value = value.replace(",", ".");
+
+  
+  let formattedValue = parseFloat(value).toFixed(2);
+
+  
+  return formattedValue.replace(".", ",");
+}
