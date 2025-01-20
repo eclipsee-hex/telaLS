@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciamento de Produtos</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Cadastro de Produtos</h1>
+    <form id="produtoForm">
+      <label for="descricao">Descrição:</label>
+      <input type="text" id="descricao" name="descricao" required>
+
+      <label for="preco">Preço:</label>
+      <input type="text" id="preco" name="preco" required placeholder="0,00">
+
+      <label for="validade">Data de Validade:</label>
+      <input type="text" id="validade" name="validade" required placeholder="dd/mm/yyyy">
+
+      <label for="cadastro">Data de Cadastro:</label>
+      <input type="text" id="cadastro" name="cadastro" required placeholder="dd/mm/yyyy">
+    </form>
+    <div class="buttons">
+      <button id="salvarBtn">Salvar</button>
+      <button id="limparBtn">Limpar</button>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
