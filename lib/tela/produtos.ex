@@ -2,17 +2,8 @@ defmodule Tela.Produtos do
   alias Tela.Repo
   alias Tela.Produtos.Produto
 
-
-  @doc """
-  Listar todos os produtos.
-  """
-  def list_produtos do
-    Repo.all(Produto)
-  end
-
-  @doc """
-  Criar um novo produto.
-  """
+  # Criar um novo produto.
+  
   def create_produto(attrs) do
     %Produto{}
     |> Produto.changeset(attrs)
@@ -40,5 +31,10 @@ defmodule Tela.Produtos do
   """
   def get_produto!(id) do
     Repo.get!(Produto, id)
+  end
+
+   # Lista todos os produtos
+  def list_produtos do
+    Repo.all(Produto)
   end
 end

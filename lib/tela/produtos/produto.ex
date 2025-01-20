@@ -2,6 +2,7 @@ defmodule Tela.Produtos.Produto do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @derive {Jason.Encoder, only: [:id, :descricao, :data_validade, :data_cadastro, :preco]}
   schema "produtos" do
     field :descricao, :string
     field :data_validade, :date

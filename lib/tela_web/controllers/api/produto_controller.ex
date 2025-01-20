@@ -9,7 +9,7 @@ defmodule TelaWeb.Api.ProdutoController do
   # Lista 
   def index(conn, _params) do
     produtos = Produtos.list_produtos()
-    render(conn, "index.json", produtos: produtos)
+    json(conn, produtos)  # Renderiza diretamente os produtos como JSON
   end
 
   # Cria 
@@ -19,14 +19,14 @@ defmodule TelaWeb.Api.ProdutoController do
       conn
       |> put_status(:created)  # Status HTTP 201
       |> put_resp_header("location", Routes.produto_path(conn, :show, produto))  # Header de localização
-      |> render("show.json", produto: produto)  # Renderiza a resposta em formato JSON
+      |> json(produto)  # Renderiza o produto em formato JSON diretamente
     end
   end
 
   # Exibe 
   def show(conn, %{"id" => id}) do
     produto = Produtos.get_produto!(id)  # Garante que o produto será encontrado ou dispara um erro
-    render(conn, "show.json", produto: produto)  # Renderiza o produto em formato JSON
+    json(conn, produto)  # Renderiza o produto em formato JSON diretamente
   end
 
   # Atualiza 
@@ -35,7 +35,7 @@ defmodule TelaWeb.Api.ProdutoController do
 
     # Tenta atualizar o produto com os novos parâmetros
     with {:ok, %Produto{} = produto} <- Produtos.update_produto(produto, produto_params) do
-      render(conn, "show.json", produto: produto)  # Renderiza o produto atualizado em formato JSON
+      json(conn, produto)  # Renderiza o produto atualizado em formato JSON diretamente
     end
   end
 
