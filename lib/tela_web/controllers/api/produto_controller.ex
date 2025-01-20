@@ -9,7 +9,8 @@ defmodule TelaWeb.Api.ProdutoController do
   # Lista 
   def index(conn, _params) do
     produtos = Produtos.list_produtos()
-    json(conn, produtos)  
+    json(conn, produtos)
+  end  
 
   # Cria 
   def create(conn, %{"produto" => produto_params}) do
