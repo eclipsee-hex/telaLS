@@ -36,6 +36,7 @@ defmodule TelaWeb.Api.ProdutoController do
     # Tenta atualizar o produto com os novos parâmetros
     with {:ok, %Produto{} = produto} <- Produtos.update_produto(produto, produto_params) do
       json(conn, produto) 
+    end
   end
 
   # Exclui 
