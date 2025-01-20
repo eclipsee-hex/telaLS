@@ -2,10 +2,10 @@
 
 Requirements: 
 
-Elixir -> Version 1.18.1
-Erlang -> Version OTP 27
-NodeJS -> 22.13.0
-Postgres -> 17.2-3 (configurar a senha mestre como masterkey)
+Elixir -> Version 1.18.1;
+Erlang -> Version OTP 27;
+NodeJS -> 22.13.0;
+Postgres -> 17.2-3 (configurar a senha mestre como masterkey);
 
 Ao baixar o projeto com os requirements configurados executar na seguinte ordem no diretório do projeto:
 
