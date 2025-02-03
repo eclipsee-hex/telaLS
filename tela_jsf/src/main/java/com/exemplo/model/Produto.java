@@ -11,7 +11,7 @@ public class Produto {
     private Double preco;
     private boolean ativo;
 
-    // Getters e Setters
+   
 
     public Long getId() {
         return id;

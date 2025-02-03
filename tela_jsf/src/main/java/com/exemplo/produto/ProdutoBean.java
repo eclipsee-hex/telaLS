@@ -6,7 +6,7 @@ import com.exemplo.model.Produto;
 
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
-import jakarta.ws.rs.client.Client; // Import adicionado
+import jakarta.ws.rs.client.Client; 
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.core.MediaType;
@@ -17,8 +17,8 @@ import jakarta.ws.rs.core.Response;
 public class ProdutoBean implements Serializable {
 
     private static final String ENDPOINT_URL = "http://localhost:4000/api/produtos";
-    private String descricao; // Campo adicionado
-    private Double preco; // Campo adicionado
+    private String descricao; 
+    private Double preco; 
 
     // Getters e Setters
     public String getDescricao() { return descricao; }
@@ -32,12 +32,12 @@ public class ProdutoBean implements Serializable {
             Client client = ClientBuilder.newClient();
 
             if (descricao == null || descricao.trim().isEmpty() || preco == null) {
-                // Adicione uma mensagem de erro
+                
                 return;
             }
 
             Produto produto = new Produto();
-            produto.setDescricao(descricao); // Preenche o produto
+            produto.setDescricao(descricao); 
             produto.setPreco(preco);
 
             Entity<Produto> entity = Entity.entity(produto, MediaType.APPLICATION_JSON);
