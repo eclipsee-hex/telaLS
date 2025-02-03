@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Cadastro de Produto</title>
+    <style>
+      
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .error-message {
+            color: red;
+            font-size: 12px;
+        }
+        .button-group {
+            margin-top: 20px;
+            text-align: right;
+        }
+        .button-group button {
+            padding: 10px 20px;
+            margin-left: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+        }
+        .button-group button[type="reset"] {
+            background-color: #6c757d;
+        }
+        .button-group button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</h:head>
+<h:body>
+    <div class="form-container">
+        <h1>Cadastro de Produto</h1>
+        <h:form>
+           
+            <div class="form-group">
+                <h:outputLabel for="descricao" value="Descrição:" />
+                <h:inputText id="descricao" value="#{produtoBean.descricao}" maxlength="50" required="true"
+                             requiredMessage="A descrição é obrigatória." />
+                <h:message for="descricao" styleClass="error-message" />
+            </div>
+
+            
+            <div class="form-group">
+                <h:outputLabel for="dataValidade" value="Data de Validade:" />
+                <h:inputText id="dataValidade" value="#{produtoBean.dataValidade}" required="true"
+                             requiredMessage="A data de validade é obrigatória.">
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                </h:inputText>
+                <h:message for="dataValidade" styleClass="error-message" />
+            </div>
+
+            
+            <div class="form-group">
+                <h:outputLabel for="dataCadastro" value="Data de Cadastro:" />
+                <h:inputText id="dataCadastro" value="#{produtoBean.dataCadastro}" required="true"
+                             requiredMessage="A data de cadastro é obrigatória.">
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                </h:inputText>
+                <h:message for="dataCadastro" styleClass="error-message" />
+            </div>
+
+           
+            <div class="form-group">
+                <h:outputLabel for="preco" value="Preço:" />
+                <h:inputText id="preco" value="#{produtoBean.preco}" required="true"
+                             requiredMessage="O preço é obrigatório.">
+                    <f:convertNumber type="currency" currencySymbol="R$" />
+                </h:inputText>
+                <h:message for="preco" styleClass="error-message" />
+            </div>
+
+            
+            <div class="form-group">
+                <h:outputLabel for="ativo" value="Ativo:" />
+                <h:selectBooleanCheckbox id="ativo" value="#{produtoBean.ativo}" />
+            </div>
+
+            
+            <div class="button-group">
+                <h:commandButton value="Limpar" action="#{produtoBean.limpar}" immediate="true" styleClass="btn-clear" />
+                <h:commandButton value="Gravar" action="#{produtoBean.gravar}" styleClass="btn-save" />
+            </div>
+        </h:form>
+    </div>
+</h:body>
+</html>

@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.exemplo</groupId>
+    <artifactId>tela_jsf</artifactId>
+    <version>1.0</version>
+    <packaging>war</packaging>
+
+    <name>tela_jsf</name>
+
+    <!-- Repositório Maven para as dependências -->
+    <repositories>
+        <repository>
+            <id>central</id>
+              <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+        <!-- Exemplo de repositório adicional (se necessário) -->
+        <repository>
+            <id>jakarta</id>
+              <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <!-- Dependência do Jakarta Faces (JSF) -->
+        <dependency>
+          <groupId>jakarta.faces</groupId>
+          <artifactId>jakarta.faces-api</artifactId>
+          <version>4.1.2</version>
+          <scope>provided</scope>
+        </dependency>
+
+        <!-- Dependência do JAX-RS (para API de comunicação, se necessário) -->
+        <dependency>
+            <groupId>jakarta.ws.rs</groupId>
+            <artifactId>jakarta.ws.rs-api</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-api</artifactId>
+            <version>10.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>jakarta.enterprise.cdi-api</artifactId>
+            <version>4.1.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <warSourceDirectory>src/main/webapp</warSourceDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
